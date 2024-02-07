@@ -15,6 +15,8 @@ import type {
   FunctionReference,
 } from "convex/server";
 import type * as consents from "../consents.js";
+import type * as files from "../files.js";
+import type * as geneatePdf from "../geneatePdf.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -26,6 +28,8 @@ import type * as consents from "../consents.js";
  */
 declare const fullApi: ApiFromModules<{
   consents: typeof consents;
+  files: typeof files;
+  geneatePdf: typeof geneatePdf;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

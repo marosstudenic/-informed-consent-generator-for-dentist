@@ -1,4 +1,4 @@
-import { mutation } from './_generated/server';
+import { mutation, query } from './_generated/server';
 import { v } from 'convex/values';
 
 export const createConsent = mutation({
@@ -9,5 +9,13 @@ export const createConsent = mutation({
         await ctx.db.insert('consents', {
             name: args.name,
         })
+    }
+})
+
+export const getConsents = query({
+    args: {},
+    handler: async (ctx, args) => {
+        const consents = await ctx.db.query('consents').order("desc").take(10);
+        return consents;
     }
 })
