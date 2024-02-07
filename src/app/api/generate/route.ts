@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer'
 
-export async function GET(req: Request) {
+export async function POST(req: Request) {
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
 
