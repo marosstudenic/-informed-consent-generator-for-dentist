@@ -42,7 +42,6 @@ export default function Home() {
   const [imageB, setImageB] = useState<string | null>(null);
   const consents = useQuery(api.consents.getConsents);
 
-  const generatePdf = useAction(api.geneatePdf.doSomething);
   return (
     <>
       <main className='container'>
@@ -58,9 +57,7 @@ export default function Home() {
           <Thumbnail image={imageB} setImage={setImageB} title="test b" />
         </div >
 
-        <Button onClick={() => generatePdf()}>
-          Generate pdf
-        </Button>
+
       </main >
     </>
   );

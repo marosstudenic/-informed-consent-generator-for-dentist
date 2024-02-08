@@ -14,9 +14,13 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as clerk from "../clerk.js";
 import type * as consents from "../consents.js";
 import type * as files from "../files.js";
-import type * as geneatePdf from "../geneatePdf.js";
+import type * as http from "../http.js";
+import type * as patients from "../patients.js";
+import type * as users from "../users.js";
+import type * as util from "../util.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -27,9 +31,13 @@ import type * as geneatePdf from "../geneatePdf.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  clerk: typeof clerk;
   consents: typeof consents;
   files: typeof files;
-  geneatePdf: typeof geneatePdf;
+  http: typeof http;
+  patients: typeof patients;
+  users: typeof users;
+  util: typeof util;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,
