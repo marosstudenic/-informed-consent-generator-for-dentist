@@ -4,7 +4,6 @@ import { v } from "convex/values";
 export default defineSchema({
     patients: defineTable({
         name: v.string(),
-        surname: v.string(),
         birthdate: v.string(),
         userId: v.string(),
     }),

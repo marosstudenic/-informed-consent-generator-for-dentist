@@ -6,7 +6,6 @@ import { Id } from './_generated/dataModel';
 export const createPatient = mutation({
     args: {
         name: v.string(),
-        surname: v.string(),
         birthdate: v.string(),
     },
     handler: async (ctx, args) => {
@@ -18,7 +17,6 @@ export const createPatient = mutation({
 
         await ctx.db.insert('patients', {
             name: args.name,
-            surname: args.surname,
             birthdate: args.birthdate,
             userId: userId,
         })

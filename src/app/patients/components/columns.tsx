@@ -18,10 +18,6 @@ export const columns: ColumnDef<Doc<"patients">>[] = [
         header: "Meno",
     },
     {
-        accessorKey: "surname",
-        header: "Priezvisko",
-    },
-    {
         accessorKey: "birthdate",
         header: "Dátum narodenia",
     },

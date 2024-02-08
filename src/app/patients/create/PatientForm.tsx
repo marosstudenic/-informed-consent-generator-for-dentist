@@ -13,7 +13,6 @@ import { useRouter } from "next/navigation"
 
 const formSchema = z.object({
     name: z.string().min(2).max(50),
-    surname: z.string().min(2).max(50),
     birthdate: z.string().min(2).max(50),
 })
 
@@ -27,7 +26,6 @@ export function PatientForm() {
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: "",
-            surname: "",
             birthdate: "",
         },
     })
@@ -53,19 +51,6 @@ export function PatientForm() {
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Meno</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="surname"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Priezvisko</FormLabel>
                                 <FormControl>
                                     <Input placeholder="" {...field} />
                                 </FormControl>
