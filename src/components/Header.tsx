@@ -1,3 +1,4 @@
+"use client";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { ModeToggle } from "./ui/ModeToggle";
 import Link from "next/link";
@@ -11,7 +12,6 @@ const Header = () => {
                     <Link href="/">Domov</Link>
                     <Link href="/consents">Všetky súhlasy</Link>
                     <Link href="/patients">Pacienti</Link>
-                    <Link href="/patients/create">Vytvoriť pacienta</Link>
                     <Link href="/consents/create">Vytvoriť súhlas</Link>
                 </nav>
                 <div className="flex gap-4">
