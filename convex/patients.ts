@@ -23,6 +23,28 @@ export const createPatient = mutation({
     }
 })
 
+export const getPatient = query({
+    args: {
+        id: v.id('patients'),
+    },
+    handler: async (ctx, args) => {
+        const userId = await getUserId(ctx) as Id<"users"> | undefined;
+        if (!userId) {
+            throw new Error('User is not logged in');
+        }
+
+        const patient = await ctx.db.get(args.id);
+        if (!patient) {
+            throw new Error('Patient not found');
+        }
+
+        if (patient.userId !== userId) {
+            throw new Error('Patient not found');
+        }
+        return patient;
+    }
+})
+
 export const getPatients = query({
     args: {},
     handler: async (ctx, args) => {

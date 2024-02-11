@@ -8,11 +8,10 @@ const Header = () => {
         <header className="container border-b">
             <div className="flex justify-between items-center h-16">
                 <h1>Header</h1>
-                <nav className="flex gap-4">
+                <nav className="flex gap-6">
                     <Link href="/">Domov</Link>
-                    <Link href="/consents">Všetky súhlasy</Link>
-                    <Link href="/patients">Pacienti</Link>
-                    <Link href="/consents/create">Vytvoriť súhlas</Link>
+                    <Link href="/consents/list">Súhlasy</Link>
+                    <Link href="/patients/list">Pacienti</Link>
                 </nav>
                 <div className="flex gap-4">
                     <SignedIn>
