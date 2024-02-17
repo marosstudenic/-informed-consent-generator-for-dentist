@@ -36,7 +36,7 @@ export function PatientForm() {
         // ✅ This will be type-safe and validated.
         console.log(values)
         createPatient(values)
-        router.replace('/patients')
+        router.replace('/patients/list')
         // navigate to the list of patients
 
     }

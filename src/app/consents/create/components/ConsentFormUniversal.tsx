@@ -2,11 +2,12 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useMutation, useQuery } from "convex/react"
+import { useAction, useMutation, useQuery } from "convex/react"
 import { Dispatch, SetStateAction, useRef, useState } from "react"
 import { api } from "../../../../../convex/_generated/api"
 import { useRouter, useSearchParams } from "next/navigation"
 import { Id } from "../../../../../convex/_generated/dataModel"
+import { set } from "zod";
 
 
 const TREATMENT_TYPES = {
@@ -86,19 +87,20 @@ const toggleRadio = (option: string, radioOptions: { label: string, value: strin
 }
 
 
-
 const CavityForm = () => {
     const params = useSearchParams();
     const patientId = params.get("patientId") as Id<"patients">;
+    const [isGenerating, setIsGenerating] = useState(false);
 
     const patient = useQuery(api.patients.getPatient, { id: patientId });
 
     const [options, setOptions] = useState([] as string[]);
-    const createConsent = useMutation(api.consents.createConsent)
+    const createConsent = useAction(api.handleCreateConsent.handleCreateConsent);
     const formRef = useRef<HTMLFormElement>(null);
     const router = useRouter();
 
     const handleSubmit = async () => {
+        setIsGenerating(true);
         if (!formRef.current) {
             console.error("Form not found");
             return;
@@ -115,8 +117,9 @@ const CavityForm = () => {
             name: patient.name,
             birthdate: patient.birthdate,
         })
-        router.replace(`/consents/preview/cavity/${consentId}`)
-
+        setIsGenerating(false);
+        // router.replace(`/consents/preview/cavity/${consentId}`)
+        router.replace(`/consents/list`)
     }
 
     return (
@@ -139,7 +142,7 @@ const CavityForm = () => {
                 () => handleSubmit()
             } type="button"
 
-            >Vytvoriť súhlas</Button>
+            >{isGenerating ? "Generujem..." : "Vytvoriť súhlas"}</Button>
         </form>
     )
 }

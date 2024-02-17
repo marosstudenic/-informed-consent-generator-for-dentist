@@ -22,5 +22,7 @@ export default defineSchema({
         name: v.string(),
         birthdate: v.string(),
         userId: v.string(),
+        pdfId: v.optional(v.string()),
+        emailSent: v.optional(v.string()),
     }),
 });

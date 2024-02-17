@@ -17,6 +17,7 @@ import type {
 import type * as clerk from "../clerk.js";
 import type * as consents from "../consents.js";
 import type * as files from "../files.js";
+import type * as handleCreateConsent from "../handleCreateConsent.js";
 import type * as http from "../http.js";
 import type * as patients from "../patients.js";
 import type * as users from "../users.js";
@@ -34,6 +35,7 @@ declare const fullApi: ApiFromModules<{
   clerk: typeof clerk;
   consents: typeof consents;
   files: typeof files;
+  handleCreateConsent: typeof handleCreateConsent;
   http: typeof http;
   patients: typeof patients;
   users: typeof users;

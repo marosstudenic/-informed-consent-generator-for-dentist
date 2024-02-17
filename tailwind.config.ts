@@ -3,11 +3,13 @@ import type { Config } from "tailwindcss"
 const config = {
   darkMode: ["class"],
   content: [
+    "./node_modules/flowbite-react/lib/**/*.js",
+
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
   prefix: "",
   theme: {
     container: {
@@ -74,7 +76,8 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("flowbite/plugin")
+  ],
 } satisfies Config
 
 export default config

@@ -22,8 +22,8 @@ export const createConsent = mutation({
             userId: userId,
             name: args.name,
             birthdate: args.birthdate,
-        })
-
+            pdfId: undefined,
+        });
         return consentId;
     }
 })
@@ -54,5 +54,42 @@ export const getConsents = query({
         }
         const consents = await ctx.db.query('consents').order("desc").take(10);
         return consents;
+    }
+})
+
+export const setConsentPdf = mutation({
+    args: {
+        consentId: v.id('consents'),
+        pdfId: v.string(),
+    },
+    handler: async (ctx, args) => {
+        const userId = await getUserId(ctx);
+        if (!userId) {
+            throw new Error('User is not logged in');
+        }
+        await ctx.db.patch(args.consentId, {
+            pdfId: args.pdfId,
+        });
+    }
+})
+
+export const sendEmail = mutation({
+    args: {
+        consentId: v.id('consents'),
+    },
+    handler: async (ctx, args) => {
+        const userId = await getUserId(ctx);
+        if (!userId) {
+            throw new Error('User is not logged in');
+        }
+
+        const consent = await ctx.db.patch(args.consentId, {
+            emailSent: new Date().toISOString(),
+        });
+
+        console.log(consent, "updated consent");
+
+        return consent;
+        // send email
     }
 })

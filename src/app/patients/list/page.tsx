@@ -11,7 +11,7 @@ export default function PacientsPage() {
     const patients = useQuery(api.patients.getPatients);
 
     return (
-        <div className="container pt-10">
+        <div className="container pt-10 min-h-[70vh]">
             <div className="flex justify-between items-center mb-4">
                 <h1>Moji Pacienti</h1>
                 <Button asChild>
