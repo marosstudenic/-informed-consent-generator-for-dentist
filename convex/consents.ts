@@ -9,6 +9,7 @@ export const createConsent = mutation({
         tooth: v.optional(v.string()),
         name: v.string(),
         birthdate: v.string(),
+        email: v.string(),
     },
     handler: async (ctx, args) => {
         const userId = await getUserId(ctx);
@@ -23,6 +24,7 @@ export const createConsent = mutation({
             name: args.name,
             birthdate: args.birthdate,
             pdfId: undefined,
+            email: args.email,
         });
         return consentId;
     }

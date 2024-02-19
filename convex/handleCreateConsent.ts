@@ -35,7 +35,9 @@ export const handleCreateConsent = action({
         tooth: v.optional(v.string()),
         name: v.string(),
         birthdate: v.string(),
+        email: v.string(),
     },
+
     handler: async (ctx, args) => {
         // send post to this endpoint
         // https://render.carbone.io/render/:templateID
@@ -48,11 +50,10 @@ export const handleCreateConsent = action({
             tooth: args.tooth,
             name: args.name,
             birthdate: args.birthdate,
+            email: args.email,
         });
 
         console.log(consentId, "consoleId");
-
-
 
         try {
             const response = await fetch(`https://render.carbone.io/render/${CAVITY_ID}`, {

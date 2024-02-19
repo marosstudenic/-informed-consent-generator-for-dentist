@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation"
 const formSchema = z.object({
     name: z.string().min(2).max(50),
     birthdate: z.string().min(2).max(50),
+    email: z.string().email(),
 })
 
 
@@ -27,6 +28,7 @@ export function PatientForm() {
         defaultValues: {
             name: "",
             birthdate: "",
+            email: "",
         },
     })
 
@@ -66,6 +68,21 @@ export function PatientForm() {
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Dátum narodenia</FormLabel>
+                                <FormControl>
+                                    <Input  {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3">
+                    <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Email</FormLabel>
                                 <FormControl>
                                     <Input  {...field} />
                                 </FormControl>

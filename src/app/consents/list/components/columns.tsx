@@ -3,11 +3,8 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { Doc, Id } from "../../../../../convex/_generated/dataModel"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
 import { getTreatmentTypeLabel } from "../../create/components/ConsentFormUniversal"
-import { cn, getStorageLink } from "@/lib/utils"
-import { useMutation } from "convex/react"
-import { api } from "../../../../../convex/_generated/api"
+import { getStorageLink } from "@/lib/utils"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -18,10 +15,7 @@ export type Payment = {
     email: string
 }
 
-
-
-
-export const getColums = (handleSendEmail: ({ name, email, consent, consentId }: { name: string, email: string, consent: string, consentId: string }) => any): ColumnDef<Doc<"consents">>[] => {
+export const getColums = (handleSendEmail: ({ name, email, consent, consentId }: { name: string, email: string, consent: string, consentId: string }) => any, isSendingEmail): ColumnDef<Doc<"consents">>[] => {
     return [
         {
             accessorKey: "name",
@@ -51,6 +45,15 @@ export const getColums = (handleSendEmail: ({ name, email, consent, consentId }:
                 const isConsentGenerated = consent.pdfId !== undefined;
                 const consentLink = consent.pdfId ? getStorageLink({ fileId: consent.pdfId }) : "";
 
+                let textEmail = "Poslať na email";
+                if (isSendingEmail) {
+                    textEmail = "Odosielam email";
+                }
+
+                if (consent.emailSent) {
+                    textEmail = `Odoslané na email ${new Date(consent.emailSent).toLocaleDateString('sk')}`;
+                }
+
                 // TODO, podla typu zakroku zobrazit iny link
                 return (
                     <div className="flex justify-end gap-4">
@@ -59,7 +62,7 @@ export const getColums = (handleSendEmail: ({ name, email, consent, consentId }:
                         </Button>
 
                         <Button disabled={consent.pdfId === undefined} onClick={() => handleSendEmail({ name: consent.name, email: "studenic.maros@gmail.com", consent: consentLink, consentId: consent._id })}>
-                            {consent.emailSent ? `Odoslané na email ${new Date(consent.emailSent).toLocaleDateString('sk')}` : "Poslať na email"}
+                            {textEmail}
                         </Button>
                     </div>
                 )

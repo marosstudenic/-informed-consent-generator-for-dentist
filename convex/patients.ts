@@ -7,6 +7,7 @@ export const createPatient = mutation({
     args: {
         name: v.string(),
         birthdate: v.string(),
+        email: v.string(),
     },
     handler: async (ctx, args) => {
         // check if the user is logged in
@@ -19,6 +20,7 @@ export const createPatient = mutation({
             name: args.name,
             birthdate: args.birthdate,
             userId: userId,
+            email: args.email,
         })
     }
 })

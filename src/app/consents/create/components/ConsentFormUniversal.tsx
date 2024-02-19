@@ -116,6 +116,7 @@ const CavityForm = () => {
             tooth: formRef.current.tooth.value,
             name: patient.name,
             birthdate: patient.birthdate,
+            email: patient.email,
         })
         setIsGenerating(false);
         // router.replace(`/consents/preview/cavity/${consentId}`)

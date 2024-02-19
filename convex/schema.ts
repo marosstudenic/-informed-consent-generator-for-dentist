@@ -6,6 +6,7 @@ export default defineSchema({
         name: v.string(),
         birthdate: v.string(),
         userId: v.string(),
+        email: v.string(),
     }),
     users: defineTable({
         userId: v.string(),
@@ -24,5 +25,6 @@ export default defineSchema({
         userId: v.string(),
         pdfId: v.optional(v.string()),
         emailSent: v.optional(v.string()),
+        email: v.string(),
     }),
 });

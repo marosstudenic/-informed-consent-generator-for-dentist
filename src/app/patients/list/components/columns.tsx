@@ -24,6 +24,10 @@ export const columns: ColumnDef<Doc<"patients">>[] = [
         header: "Dátum narodenia",
     },
     {
+        accessorKey: "email",
+        header: "Email",
+    },
+    {
         id: "actions",
         cell: ({ row }) => {
             const patient = row.original
