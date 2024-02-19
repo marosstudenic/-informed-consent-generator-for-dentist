@@ -1,8 +1,9 @@
 export default {
     providers: [
         {
-            domain: "https://one-hound-24.clerk.accounts.dev",
+            domain: process.env.JWT_ISSUER,
             applicationID: "convex",
         },
     ]
 };
+

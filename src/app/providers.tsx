@@ -7,6 +7,7 @@ import { PropsWithChildren } from "react";
 
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL as string);
 
+// toto sa nepouziva - je to len ak by sa chcel implementovat theming
 export function Providers({ children }: PropsWithChildren) {
     return (
 

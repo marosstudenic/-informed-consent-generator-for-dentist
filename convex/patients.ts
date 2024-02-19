@@ -48,11 +48,11 @@ export const getPatient = query({
 export const getPatients = query({
     args: {},
     handler: async (ctx, args) => {
-        const userId = await getUserId(ctx) as Id<"users"> | undefined;
-        console.log(userId)
-        if (!userId) {
-            throw new Error('User is not logged in');
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity) {
+            throw new Error("UnAuthorized");
         }
+        const userId = identity.subject;
 
         const patients = await ctx.db.query('patients').filter((q) => q.eq(q.field("userId"), userId)).order("desc").take(10);
         return patients;
