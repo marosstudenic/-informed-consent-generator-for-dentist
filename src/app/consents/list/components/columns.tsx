@@ -15,7 +15,7 @@ export type Payment = {
     email: string
 }
 
-export const getColums = (handleSendEmail: ({ name, email, consent, consentId }: { name: string, email: string, consent: string, consentId: string }) => any, isSendingEmail): ColumnDef<Doc<"consents">>[] => {
+export const getColums = (handleSendEmail: ({ name, email, consent, consentId }: { name: string, email: string, consent: string, consentId: string }) => any, isSendingEmail: boolean): ColumnDef<Doc<"consents">>[] => {
     return [
         {
             accessorKey: "name",
