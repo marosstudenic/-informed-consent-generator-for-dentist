@@ -61,7 +61,7 @@ export const getColums = (handleSendEmail: ({ name, email, consent, consentId }:
                             <a target="__blank" href={consentLink}>{!isConsentGenerated ? "Generujem" : "Zobraziť"}</a>
                         </Button>
 
-                        <Button disabled={consent.pdfId === undefined} onClick={() => handleSendEmail({ name: consent.name, email: "studenic.maros@gmail.com", consent: consentLink, consentId: consent._id })}>
+                        <Button disabled={consent.pdfId === undefined} onClick={() => handleSendEmail({ name: consent.name, email: consent.email, consent: consentLink, consentId: consent._id })}>
                             {textEmail}
                         </Button>
                     </div>
