@@ -4,7 +4,9 @@ import { ColumnDef } from "@tanstack/react-table"
 import { Doc, Id } from "../../../../../convex/_generated/dataModel"
 import { Button } from "@/components/ui/button"
 import { getTreatmentTypeLabel } from "../../create/components/ConsentFormUniversal"
-import { getStorageLink } from "@/lib/utils"
+export const getStorageLink = ({ fileId }: { fileId: string }) => {
+    return `${process.env.NEXT_PUBLIC_STORAGE_BUCKET}${fileId}`
+}
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
